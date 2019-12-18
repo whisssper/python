@@ -1,0 +1,22 @@
+# coding: utf-8
+# 测爬虫 ip 工具
+from urllib import request,error
+
+from bs4 import BeautifulSoup
+
+if __name__ == '__main__':
+
+    Re = []
+    url = "http://2000019.ip138.com/"
+    rsp = request.urlopen(url)
+    html = rsp.read().decode('utf-8')
+    bs = BeautifulSoup(html, 'html.parser')
+    p = bs.find_all('p')
+
+    for i in p:
+        if i is not None:
+            Re.append(i.get_text())
+
+    # for n in range(len(Re)):
+    print(Re[0])
+    # print(html)
