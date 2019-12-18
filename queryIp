@@ -1,0 +1,22 @@
+from urllib import request,error
+
+from bs4 import BeautifulSoup
+
+if __name__ == '__main__':
+    ip = input("请输入IP地址：")
+    url = "http://www.ip138.com/iplookup.asp?ip="+ip
+    # print(url)
+    rsp = request.urlopen(url)
+    # print(rsp)
+    html = rsp.read().decode('GBK')
+    bs = BeautifulSoup(html, 'html.parser')
+    ul = bs.find_all('li')
+    Re = []
+    for i in ul:
+        if i is not None:
+            Re.append(i.get_text())
+
+    #
+
+    for n in Re:
+        print(n)
